@@ -8,7 +8,7 @@
     "build/**/*"
   ],
   "scripts": {
-    "clean": "del ./build/*",
+    "clean": "rm -r ./build/*",
     "build": "npm run clean && tsc"
   },
   "repository": {
