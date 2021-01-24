@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nicolaslazzos/microservices-node.git"
+    "url": "git+https://github.com/nicolaslazzos/microservices-node-common.git"
   },
   "author": "Nicolas Lazzos",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nicolaslazzos/microservices-node/issues"
+    "url": "https://github.com/nicolaslazzos/microservices-node-common/issues"
   },
-  "homepage": "https://github.com/nicolaslazzos/microservices-node#readme",
+  "homepage": "https://github.com/nicolaslazzos/microservices-node-common#readme",
   "devDependencies": {
     "del-cli": "^3.0.1",
     "typescript": "^4.1.3"
