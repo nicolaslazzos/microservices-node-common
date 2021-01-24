@@ -4,7 +4,7 @@ The package must be in a git repository, so we first commit the changes.
 
 ```
 git add .
-git commit -m "some message'
+git commit -m "some message"
 ```
 
 Then every time we are going to publish a new version, we have to update the version number, so with that command, npm will automatically update the version for us.
