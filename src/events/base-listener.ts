@@ -1,14 +1,20 @@
 import { Stan, Message } from "node-nats-streaming";
+import { Subjects } from "./subjects";
 
 // abstract class for creating listeners for the differents events we are going to handle
 
-abstract class Listener {
+interface Event {
+  subject: Subjects;
+  data: any;
+}
+
+abstract class Listener<T extends Event> {
   // abstracts must be implemented by the class
 
   // a subject is like a channel name
-  abstract subject: string;
+  abstract subject: T["subject"];
   abstract queueGroupName: string;
-  abstract onMessage(data: any, msg: Message): void;
+  abstract onMessage(data: T["data"], msg: Message): void;
 
   private client: Stan;
 
@@ -60,4 +66,4 @@ abstract class Listener {
   }
 }
 
-export default { Listener };
+export { Listener };
