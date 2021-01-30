@@ -29,13 +29,13 @@ abstract class Listener<T extends Event> {
     return (
       this.client
         .subscriptionOptions()
-        // to get all the events emitted in this channel when we subscribe for the first time
+        // to get all the events emitted in this channel when we subscribe it for the first time
         .setDeliverAllAvailable()
-        // to manually send the ack that the event was successfully processed, otherwise, the event is re emitted
+        // to manually send the ack to confirm that the event was successfully processed, otherwise, the event is re-emitted
         .setManualAckMode(true)
-        // how much time to wait the ack befor re emitting the event
+        // how much time to wait the ack before re-emitting the event
         .setAckWait(this.ackWait)
-        // a durable name is usefull for the channel to remember the events that we have processed before, so if the client disconnects and the connects again, only the not processed events will be sent
+        // a durable name is useful for the channel to remember the events that we have processed before, so if the client disconnects and the connects again, only the not processed events will be sent
         .setDurableName(this.queueGroupName)
     );
   }
@@ -48,7 +48,9 @@ abstract class Listener<T extends Event> {
     );
 
     subscription.on("message", (msg: Message) => {
-      console.log(`Message received: ${this.subject} / ${this.queueGroupName}`);
+      console.log(
+        `Message received from: ${this.subject} / ${this.queueGroupName}`
+      );
 
       const parsedData = this.parseMessage(msg);
 
