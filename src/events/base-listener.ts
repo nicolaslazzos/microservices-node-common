@@ -16,7 +16,8 @@ abstract class Listener<T extends Event> {
   abstract queueGroupName: string;
   abstract onMessage(data: T["data"], msg: Message): void;
 
-  private client: Stan;
+  // protected makes it accessible to the child class
+  protected client: Stan;
 
   // protected means that the subclass can define it if it wants to
   protected ackWait = 5 * 1000;
@@ -41,16 +42,10 @@ abstract class Listener<T extends Event> {
   }
 
   listen() {
-    const subscription = this.client.subscribe(
-      this.subject,
-      this.queueGroupName,
-      this.subscriptionOptions()
-    );
+    const subscription = this.client.subscribe(this.subject, this.queueGroupName, this.subscriptionOptions());
 
     subscription.on("message", (msg: Message) => {
-      console.log(
-        `Message received from: ${this.subject} / ${this.queueGroupName}`
-      );
+      console.log(`Message received from: ${this.subject} / ${this.queueGroupName}`);
 
       const parsedData = this.parseMessage(msg);
 
@@ -62,9 +57,7 @@ abstract class Listener<T extends Event> {
     const data = msg.getData();
 
     // handling if we are receiving a string or a buffer in the message
-    return typeof data === "string"
-      ? JSON.parse(data)
-      : JSON.parse(data.toString("utf8"));
+    return typeof data === "string" ? JSON.parse(data) : JSON.parse(data.toString("utf8"));
   }
 }
 

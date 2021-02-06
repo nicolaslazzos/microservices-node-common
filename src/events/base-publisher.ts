@@ -11,7 +11,8 @@ interface Event {
 export abstract class Publisher<T extends Event> {
   abstract subject: T["subject"];
 
-  private client: Stan;
+  // protected makes it accessible to the child class
+  protected client: Stan;
 
   constructor(client: Stan) {
     this.client = client;
