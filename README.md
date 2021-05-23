@@ -24,3 +24,9 @@ Finally we can publish it to npm running the following command.
 ```
 npm publish
 ```
+
+If it's the first time publishing the package and it's public, we need to inidicate that through the following command.
+
+```
+npm publish --access public
+```
